@@ -1,0 +1,131 @@
+void adminmenu()//管理员菜单
+{
+	int flag,line=23,row=7;
+	while(1)
+	{
+		system("cls");
+		gotoxy(15,3);
+		printf("===============================================");
+		gotoxy(15,4);
+		printf("|");
+		gotoxy(61,4);
+		printf("|");
+		gotoxy(15,5);
+		printf("|");
+		gotoxy(61,5);
+		printf("|");
+		gotoxy(29,5);
+		printf("请选择要进行的操作：");
+        gotoxy(15,6);
+		printf("|");
+		gotoxy(61,6);
+		printf("|");
+		gotoxy(15,7);
+		printf("|");
+		gotoxy(61,7);
+		printf("|");
+		gotoxy(25,7);
+		printf("1.添加");
+		gotoxy(40,7);
+		printf("2.删除");
+		gotoxy(15,8);
+		printf("|");
+		gotoxy(61,8);
+		printf("|");
+		gotoxy(25,8);
+		printf("3.查看");
+		gotoxy(40,8);
+		printf("4.统计");
+		gotoxy(15,9);
+		printf("|");
+		gotoxy(61,9);
+		printf("|");
+		gotoxy(25,9);
+		printf("5.排序");
+		gotoxy(40,9);
+		printf("6.修改");
+		gotoxy(15,10);
+		printf("|");
+		gotoxy(61,10);
+		printf("|");
+		gotoxy(25,10);
+		printf("7.注册");
+		gotoxy(40,10);
+		printf("8.返回");
+	    gotoxy(15,11);
+		printf("|");
+		gotoxy(61,11);
+		printf("|");
+		gotoxy(15,12);
+		printf("|");
+		gotoxy(61,12);
+		printf("|");
+		gotoxy(28,1);
+		printf("★用方向键控制光标★");
+		gotoxy(15,13);
+		printf("===============================================");
+		gotoxy(line,row);
+		putch(16);
+		flag=getch();
+		if(flag==Up)
+		{
+			row=row-1;
+			if(row==6)
+				row=10;
+		}
+		else if(flag==Down)
+		{
+			row=row+1;
+			if(row==11)
+				row=7;
+		}
+		else if(flag==Left)
+		{
+			line=line-15;
+			if(line==8)
+				line=38;
+		}
+		else if(flag==Right)
+		{
+			line=line+15;
+			if(line==53)
+				line=23;
+		}
+		if(flag==13)
+		{
+			if(line==23&&row==7)
+			{
+				phead=read();
+				phead=add(phead);
+				save(phead);
+			}
+			else if(line==38&&row==7)
+			{
+				phead=read();
+				phead=Delete(phead);
+				saveother(phead);
+			}
+			else if(line==23&&row==8)
+				look();
+			else if(line==38&&row==8)
+			    statistics();
+			else if(line==23&&row==9)
+			{
+				phead=read();
+				sort(phead);
+			}
+			else if(line==38&&row==9)
+			{
+				phead=read();
+				phead=revise(phead);
+				saveother(phead);
+			}
+			else if(line==23&&row==10)
+				head=adminpassword();
+			else if(line==38&&row==10)
+			{
+				break;
+			}
+		} 
+	}
+}

@@ -1,0 +1,224 @@
+void studentpassword()//学生登录界面
+{
+	struct studentpassword *p,*h,*q;
+	struct student *d;
+	FILE *fp;
+	int i=0,k=0,n=1,m=0,t,j,y=0,line=32,row=10;
+	char a[10],b[20],c[20];
+	phead=read();
+	fp=fopen("f:\\studentpassword.txt","rt");
+	h=(struct studentpassword*)malloc(sizeof(struct studentpassword));
+	h->next=NULL;
+	while(!feof(fp))
+	{
+		q=(struct studentpassword*)malloc(sizeof(struct studentpassword));
+		fscanf(fp,"%s %s",q->ID,q->password);
+		q->next=h->next;
+		h->next=q;
+	}
+	fclose(fp);
+    while(1)
+	{
+		system("cls");
+		gotoxy(15,3);
+		printf("===========================================");
+		gotoxy(15,15);
+		printf("===========================================");
+		gotoxy(15,4);
+		printf("|");
+		gotoxy(57,4);
+		printf("|");
+		gotoxy(15,5);
+		printf("|");
+		gotoxy(57,5);
+		printf("|");
+		gotoxy(15,6);
+		printf("|");
+		gotoxy(57,6);
+		printf("|");
+		gotoxy(15,7);
+		printf("|");
+		gotoxy(57,7);
+		printf("|");
+		gotoxy(15,8);
+		printf("|");
+		gotoxy(57,8);
+		printf("|");
+		gotoxy(15,9);
+		printf("|");
+		gotoxy(57,9);
+		printf("|");
+		gotoxy(15,10);
+		printf("|");
+		gotoxy(57,10);
+		printf("|");
+		gotoxy(15,11);
+		printf("|");
+		gotoxy(57,11);
+		printf("|");
+		gotoxy(15,12);
+		printf("|");
+		gotoxy(57,12);
+		printf("|");
+		gotoxy(15,13);
+		printf("|");
+		gotoxy(57,13);
+		printf("|");
+		gotoxy(15,14);
+		printf("|");
+		gotoxy(57,14);
+		printf("|");
+		gotoxy(27,8);
+		printf("ID:");
+        gotoxy(27,10);
+		printf("密码:");
+		gotoxy(32,8);
+		flushall();
+		gets(a);
+		for(p=h->next;p!=NULL;p=p->next)
+			if(strcmp(p->ID,a)==0)
+				break;
+		if(p==NULL)
+		{
+			gotoxy(25,12);
+			printf("对不起，不存在该账号");
+			break;
+		}
+		else
+		{
+			while(1)
+			{
+                gotoxy(line,row);
+				flushall();
+				while((c[i]=getch())!='\r')//i为输入密码位数 k为星号个数
+				{
+					if(i==0&&c[i]=='\b')
+						c[0]='\0';
+					else if(i>0&&c[i]=='\b')
+					{
+						printf("\b \b");
+						i--;
+						k--;
+					}
+					else if(k<7)
+					{
+						printf("*");
+						k++;
+						i++;
+					}
+				}
+				c[i]='\0';
+				t=strlen(c);
+				for(j=0;j<6;j++)
+					b[j]=c[j];
+				b[j]='\0';
+				if(t==6&&strcmp(p->password,b)==0)
+				{
+					gotoxy(24,12);
+					printf("                         ");
+					gotoxy(28,12);
+					printf("登录成功");
+					n=0;
+					break;
+				}
+				else 
+				{
+					y++;
+					if(y<3)
+					{
+						gotoxy(24,12);
+						printf("                     ");
+						gotoxy(24,12);
+						printf("密码错误，请再次输入!");
+						i=0;
+						k=0;
+						gotoxy(line,row);
+						printf("                     ");
+						gotoxy(line,row);
+					}
+					else if(y==3)
+					{
+						gotoxy(23,12);
+						printf("                       ");
+						gotoxy(23,12);
+						printf("错误次数超过三次，退出!");
+						n=1;
+						m=1;
+						break;
+					}
+				}
+				if(n==0||m==1)
+				   break;
+			}
+		}
+		if(n==0||m==1)
+		    break;
+	}
+	Sleep(2000);
+	if(n==0)
+	{
+		system("cls");
+		gotoxy(15,3);
+		printf("===============================================");
+		gotoxy(15,4);
+		printf("|");
+		gotoxy(61,4);
+		printf("|");
+		gotoxy(15,5);
+		printf("|");
+		gotoxy(61,5);
+		printf("|");
+		gotoxy(15,6);
+		printf("|");
+		gotoxy(61,6);
+		printf("|");
+		gotoxy(15,7);
+		printf("|");
+		gotoxy(61,7);
+		printf("|");
+		gotoxy(15,8);
+		printf("|");
+		gotoxy(61,8);
+		printf("|");
+		gotoxy(15,9);
+		printf("|");
+		gotoxy(61,9);
+		printf("|");
+		gotoxy(15,10);
+		printf("|");
+		gotoxy(61,10);
+		printf("|");
+		gotoxy(15,11);
+		printf("|");
+		gotoxy(61,11);
+		printf("|");
+        gotoxy(15,12);
+		printf("===============================================");
+		for(d=phead->next;d!=NULL;d=d->next)
+			if(strcmp(d->ID,p->ID)==0)
+				break;
+		if(d==NULL)
+		{
+			gotoxy(28,6);
+			printf("对不起，没有查询到该生的成绩！");
+		}
+		else
+		{   gotoxy(26,5);
+			printf("ID:%s\n",d->ID);
+			gotoxy(26,6);
+			printf("姓名:%s\n",d->name);
+			gotoxy(26,7);
+			printf("语文:%lf",d->score[0]);
+			gotoxy(26,8);
+			printf("数学:%lf",d->score[1]);
+			gotoxy(26,9);
+			printf("英语:%lf",d->score[2]);
+			gotoxy(26,10);
+		    printf("平均分:%lf\n",d->avg);
+		}
+		gotoxy(28,14);
+		printf("按任意键返回主菜单");
+		getch();
+		
+	}
+}

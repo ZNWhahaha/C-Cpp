@@ -1,0 +1,89 @@
+void menu1() //登录界面
+{
+	int line=25,row=8,flag;
+    while(1)
+	{
+		system("cls");
+		gotoxy(15,3);
+		printf("===============================================");
+		gotoxy(15,4);
+		printf("|");
+		gotoxy(61,4);
+		printf("|");
+		gotoxy(15,5);
+		printf("|");
+		gotoxy(61,5);
+		printf("|");
+		gotoxy(15,6);
+		printf("|");
+		gotoxy(61,6);
+		printf("|");
+		gotoxy(15,7);
+		printf("|");
+		gotoxy(61,7);
+		printf("|");
+		gotoxy(15,8);
+		printf("|");
+		gotoxy(61,8);
+		printf("|");
+		gotoxy(15,9);
+		printf("|");
+		gotoxy(61,9);
+		printf("|");
+		gotoxy(15,10);
+		printf("|");
+		gotoxy(61,10);
+		printf("|");
+		gotoxy(15,11);
+		printf("|");
+		gotoxy(61,11);
+		printf("|");
+		gotoxy(15,12);
+		printf("|");
+		gotoxy(61,12);
+		printf("|");
+		gotoxy(15,13);
+		printf("|");
+		gotoxy(61,13);
+		printf("|");
+		gotoxy(29,5);
+		printf("请选择登录方式：\n");
+		gotoxy(27,8);
+		printf("1.学生登录\n");
+		gotoxy(27,10);
+		printf("2.管理员登录\n");
+		gotoxy(27,12);
+		printf("3.退出\n");
+		gotoxy(30,1);
+		printf("★用方向键控制光标★");
+		gotoxy(15,14);
+		printf("===============================================");
+		gotoxy(line,row);
+		putch(16);
+		flag=getch();
+		if(flag==Up)
+		{
+			row=row-2;
+			if(row==6)
+				row=12;
+		}
+		else if(flag==Down)
+		{
+			row=row+2;
+			if(row==14)
+				row=8;
+		}
+		else if(flag==13)
+		{
+			if(line==25&&row==8)
+				studentpassword();
+			else if(line==25&&row==10)
+               landadmin();
+			else if(line==25&&row==12)
+			{
+               byebye();
+			   break;
+			}
+		}
+	}
+}

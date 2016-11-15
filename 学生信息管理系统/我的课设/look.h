@@ -1,0 +1,91 @@
+void look()//查看学生信息
+{
+    int flag,line=33,row=7,x=0;
+	while(1)
+	{	
+		system("cls");
+		gotoxy(15,3);
+		printf("===============================================");
+		gotoxy(15,4);
+		printf("|");
+		gotoxy(61,4);
+		printf("|");
+		gotoxy(15,5);
+		printf("|");
+		gotoxy(61,5);
+		printf("|");
+		gotoxy(15,6);
+		printf("|");
+		gotoxy(61,6);
+		printf("|");
+		gotoxy(15,7);
+		printf("|");
+		gotoxy(61,7);
+		printf("|");
+		gotoxy(30,5);
+		printf("请选择查看类型");
+		gotoxy(35,7);
+		printf("1.浏览");
+		gotoxy(35,9);
+		printf("2.搜索");
+		gotoxy(15,8);
+		printf("|");
+		gotoxy(61,8);
+		printf("|");
+		gotoxy(15,9);
+		printf("|");
+		gotoxy(61,9);
+		printf("|");
+		gotoxy(15,10);
+		printf("|");
+		gotoxy(61,10);
+		printf("|");
+		gotoxy(28,1);
+		printf("★用方向键控制光标★");
+		gotoxy(15,11);
+		printf("===============================================");
+		gotoxy(line,row);
+		putch(16);
+		flag=getch();
+		if(flag==Up)
+		{
+			row=row-2;
+			if(row==5)
+				row=9;
+		}
+		else if(flag==Down)
+		{
+			row=row+2;
+			if(row==11)
+				row=7;
+		}
+		else if(flag==Left)
+        {
+			line=line-20;
+			if(line==13)
+				line=43;
+		}
+		else if(flag==Right)
+        {
+			line=line-20;
+			if(line==13)
+				line=43;
+		}
+
+		if(flag==13)
+		{
+			if(line==33&&row==7)
+			{
+				phead=read();
+				print(phead);
+				break;
+			}
+			else if(line==33&&row==9)
+			{
+				phead=read();
+				find(phead);
+				break;
+			}
+		}
+	}
+}
